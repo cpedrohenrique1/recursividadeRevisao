@@ -67,6 +67,35 @@ int recursividade::CalculoFibonacci(int numero)
     return CalculoFibonacci(numero - 1) + CalculoFibonacci(numero - 2);
 }
 
+void quickSort(int vetor[], int primeiro, int ultimo) {
+    int i, j, pivo, aux;
+    i = primeiro;
+    j = ultimo - 1;
+    pivo = vetor[(primeiro + ultimo) / 2];
+    while (i <= j) {
+        while (vetor[i] < pivo && i < ultimo) {
+            i++;
+        }
+        while (vetor[j] > pivo && j > primeiro) {
+            j--;
+        }
+        if (i <= j) {
+            aux = vetor[i];
+            vetor[i] = vetor[j];
+            vetor[j] = aux;
+            i++;
+            j--;
+        }
+    }
+    if (j > primeiro) {
+        quickSort(vetor, primeiro, j + 1);
+    }
+    if (i < ultimo) {
+        quickSort(vetor, i, ultimo);
+    }
+}
+
+
 QString torre_hanoi(int n, char origem, char destino, char auxiliar) {
   QString resultado = "";
   if (n == 1) {
